@@ -64,7 +64,7 @@ class ParcelaIndustrial inherits Parcela {
 	method plantasFuertes() = plantas.filter({p =>p.seAsociaBienAIndus(self)})
 	
 	method aniadorPlantasAutoSustentables() = 
-		if(plantasAutosustentables.size() + self.plantasFuertes().size() < 3) { plantasAutosustentables.addAll(self.plantasFuertes()) }
+		if(plantasAutosustentables.size() + self.plantasFuertes().size() <= 2) { plantasAutosustentables.addAll(self.plantasFuertes()) }
 		else {
 			plantasAutosustentables.add(plantasAutosustentables.first())
 			plantasAutosustentables.add(plantasAutosustentables.last())

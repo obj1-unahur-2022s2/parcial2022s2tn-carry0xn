@@ -17,17 +17,25 @@ describe "Test de INTA"  {
 	method initialize() {
 		parcela1.plantarPlantaCon(#{soja1, soja2})
 		parcela3.plantarPlantaCon(#{soja1, soja2})
+		
 		parcelaIndu.plantarPlantaCon(#{quinoa2, quinoa3})
 		
 		inta.aniadirParcelas(parcela1)
 		inta.aniadirParcelas(parcela3)
 		inta.aniadirParcelas(parcelaIndu)
+		
+		parcelaIndu.aniadorPlantasAutoSustentables()
+		parcela3.aniadorPlantasAutoSustentables()
+		parcela1.aniadorPlantasAutoSustentables()
 	}
 	
 	test "porcentaje inta" {
 		assert.equals(2, inta.promedioDePlantas())
 	}
+	test "x" {
+		assert.equals(2, parcelaIndu.plantasAutosustentables().size())
+	}
 	test "inta mas autosustentable" {
-		assert.equals(parcela3, inta.masAutosustentable())
+		assert.equals(parcelaIndu, inta.masAutosustentable())
 	}
 }
