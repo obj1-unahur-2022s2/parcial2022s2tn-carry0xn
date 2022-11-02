@@ -22,9 +22,10 @@ describe "Test de INTA"  {
 		inta.aniadirParcelas(parcelaIndu)
 	}
 	
-	test "parcela superficie" {
-		assert.equals(20, parcela1.superficie())
-	
-	
+	test "porcentaje inta" {
+		assert.equals(2, inta.promedioDePlantas())
+	}
+	test "inta mas autosustentable" {
+		assert.equals(parcelaIndu, inta.masAutosustentable())
 	}
 }
