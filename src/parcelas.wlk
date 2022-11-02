@@ -43,31 +43,28 @@ class Parcela {
 }
 
 class ParcelaEcologica inherits Parcela {
-	const property plantasAutosustentables = #{}
+	var property plantasAutosustentables = []
 	
-	method esParcela() = "ecologica"
 	
 	method seAsociaBienAEcologica(unaPlanta) = unaPlanta.seAsociaBienAEco(self)
 	
 	method todasSeAsociaBien() = plantas.all({p => p.seAsociaBienAEco(self)})
 	
-	method plantasAutoSustentables() = plantasAutosustentables.addAll(plantas.filter({p => p.seAsociaBienAEco(self)}))
+	method aniadorPlantasAutoSustentables() = plantasAutosustentables.addAll(plantas.filter({p => p.seAsociaBienAEco(self)}))
 }
 
 class ParcelaIndustrial inherits Parcela {
-	const property plantasAutosustentables = []
+	var property plantasAutosustentables = []
 	
-	method esParcela() = "industrial"
 	
 	method seAsociaBienAIndustrial(unaPlanta) = unaPlanta.seAsociaBienAIndus(self)
 	
-	method todasSeAsociaBien() = plantas.all({p => p.seAsociaBienAIndus(self)})
+	method todasSeAsociaBien() = plantas.all({p =>p.seAsociaBienAIndus(self)})
 	
-	method plantasFuertes() = plantas.filter({p => p.seAsociaBienAIndus(self)})
+	method plantasFuertes() = plantas.filter({p =>p.seAsociaBienAIndus(self)})
 	
-	method plantasAutoSustentables() = 
-		if(plantasAutosustentables.size() + self.plantasFuertes().size() < 3)
-			plantasAutosustentables.addAll(self.plantasFuertes())
+	method aniadorPlantasAutoSustentables() = 
+		if(plantasAutosustentables.size() + self.plantasFuertes().size() < 3) { plantasAutosustentables.addAll(self.plantasFuertes()) }
 		else {
 			plantasAutosustentables.add(plantasAutosustentables.first())
 			plantasAutosustentables.add(plantasAutosustentables.last())

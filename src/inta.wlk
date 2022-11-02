@@ -5,15 +5,8 @@ object inta{
 		parcelas.add(parcela)
 	}
 	method promedioDePlantas() = self.cantidadPlantas() / parcelas.size()
-	method cantidadPlantas() = parcelas.sum({p => p.cantidadPlantas()}) 
+	method cantidadPlantas() = parcelas.sum({p =>p.cantidadPlantas()}) 
 	
-	method masAutosustentable() = parcelas.find({p => p.plantasAutosustentables().size() == self.mayorCantidadDePlantas()})
+	method masAutosustentable() = parcelas.max({p =>p.plantasAutosustentables().size()})
 	
-	method mayorCantidadDePlantas() = parcelas.max({p => p.plantasAutosustentables().size()})
-	
-	method parcelasIndustriales() = 
-		parcelas.filter({p => p.esParcela() == "industrial"})
-	
-	method parcelasEcologicas() = 
-		parcelas.filter({p => p.esParcela() == "ecologica"})
 }
