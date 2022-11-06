@@ -1,3 +1,19 @@
+/*
+ * En el método plantarPlanta(unaPlanta), no hacía falta poner el else, ya que si 
+ * se cumple la condición de error, se corta la ejecución del método.
+ * 
+ * Te dejo una posible solución al punto 5 del parcial, agregando el método 
+ * seAsociaBienCon(unaPlanta).
+ * 
+ * Definir variables auxiliares en las subclases de Parcela, para solucionar la 
+ * seleccion de las parcelas que serían autosustentables no es una buena solución, ya
+ * que siempre es mejor usar métodos siempre que sea posible, antes que nuevos atributos.
+ * Eso puede calcularse y no es necesario que el objeto recuerde su lista de plantasAutosustentables.
+ * Por otro lado, el método aniadorPlantasAutoSustentables() generará error si 
+ * la colección auxiliar no posee elementos.  
+ * 
+ */
+
 import plantas.*
 
 class Parcela {
@@ -20,8 +36,7 @@ class Parcela {
 	method plantarPlanta(unaPlanta) {
 		if(self.condicionDeHoras(unaPlanta) or self.condicionDeTamanio(unaPlanta))
 			self.error("No se pueden tener tantas plantas")
-		else
-			plantas.add(unaPlanta)
+		plantas.add(unaPlanta)
 	}
 	
 	method condicionDeHoras(unaPlanta) = plantas.size() > self.cantidaMaximaDePlantasQueTolera()
@@ -40,6 +55,8 @@ class Parcela {
 	method parcelaEsIdeal() = plantas.all({p => p.esIdealLaParcela(self)})
 	
 	method plantasNoPasanDe(unaAltura) = plantas.all({ p => p.altura() < unaAltura})
+	
+	method seAsociaBienCon(unaPlanta)
 }
 
 class ParcelaEcologica inherits Parcela {
@@ -51,6 +68,8 @@ class ParcelaEcologica inherits Parcela {
 	method todasSeAsociaBien() = plantas.all({p => p.seAsociaBienAEco(self)})
 	
 	method aniadorPlantasAutoSustentables() = plantasAutosustentables.addAll(plantas.filter({p => p.seAsociaBienAEco(self)}))
+	
+	override method seAsociaBienCon(unaPlanta) = !self.tieneComplicaciones() && unaPlanta.esIdealLaParcela(self)
 }
 
 class ParcelaIndustrial inherits Parcela {
@@ -69,6 +88,8 @@ class ParcelaIndustrial inherits Parcela {
 			plantasAutosustentables.add(plantasAutosustentables.first())
 			plantasAutosustentables.add(plantasAutosustentables.last())
 		}
+		
+	override method seAsociaBienCon(unaPlanta) = self.cantidaMaximaDePlantasQueTolera() <= 2 && unaPlanta.esFuerte()
 }
 
 
