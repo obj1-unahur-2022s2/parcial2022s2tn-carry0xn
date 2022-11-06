@@ -34,7 +34,7 @@ describe "Test de Plantas"  {
 	}
 	
 	test "Soja semillas" {
-		assert.that(soja1.daNuevasSemillas())
+		assert.that(!soja1.daNuevasSemillas())
 		assert.notThat(soja2.daNuevasSemillas())
 	}
 	test "Soja espacio" {
@@ -50,7 +50,7 @@ describe "Test de Plantas"  {
 		assert.that(quinoa2.daNuevasSemillas())
 	}
 	test "HierbaBuena Espacio" {
-		assert.equals(9, hierba1.espacioQueOcupa())
+		assert.equals(6, hierba1.espacioQueOcupa())
 	}
 	test "planta se asocia bien en parcela ecologica" {
 		assert.that(parcelaEco.seAsociaBienAEcologica(quinoa1))

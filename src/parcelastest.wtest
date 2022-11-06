@@ -2,10 +2,10 @@ import parcelas.*
 import plantas.*
 describe "Test de Parcelas"  {
 	
-	const parcela1 = new Parcela(ancho = 20, largo = 1, horasAlSol = 8)
-	const parcela2 = new Parcela(ancho = 2.5, largo = 2, horasAlSol = 8)
-	const parcela3 = new Parcela(ancho = 20, largo = 2, horasAlSol = 8)
-	const parcelaIdeal = new Parcela(ancho = 20, largo = 2, horasAlSol = 6)
+	const parcela1 = new ParcelaEcologica(ancho = 20, largo = 1, horasAlSol = 8)
+	const parcela2 = new ParcelaEcologica(ancho = 2.5, largo = 2, horasAlSol = 8)
+	const parcela3 = new ParcelaEcologica(ancho = 20, largo = 2, horasAlSol = 8)
+	const parcelaIdeal = new ParcelaEcologica(ancho = 20, largo = 2, horasAlSol = 6)
 	
 	const parcelaEco = new ParcelaEcologica(ancho = 20, largo = 2, horasAlSol = 5)
 	const parcelaIndu = new ParcelaIndustrial(ancho = 20, largo = 2, horasAlSol = 6)
